@@ -108,22 +108,28 @@ class MainActivity : AppCompatActivity() {
     fun btnEqualEvent(view: View){
         val newNum = txtResult.text.toString()
         var finalResult:Double?=null
-        when(operation){
-            "*" -> {
-                finalResult = oldNum.toDouble() * newNum.toDouble()
+        if(oldNum != "" && newNum != ""){
+            when(operation){
+                "*" -> {
+                    finalResult = oldNum.toDouble() * newNum.toDouble()
+                    oldNum=""
+                }
+                "/" -> {
+                    finalResult = oldNum.toDouble() / newNum.toDouble()
+                    oldNum=""
+                }
+                "+" -> {
+                    finalResult = oldNum.toDouble() + newNum.toDouble()
+                    oldNum=""
+                }
+                "-" -> {
+                    finalResult = oldNum.toDouble() - newNum.toDouble()
+                    oldNum=""
+                }
             }
-            "/" -> {
-                finalResult = oldNum.toDouble() / newNum.toDouble()
-            }
-            "+" -> {
-                finalResult = oldNum.toDouble() + newNum.toDouble()
-            }
-            "-" -> {
-                finalResult = oldNum.toDouble() - newNum.toDouble()
-            }
+            txtResult.text = finalResult.toString()
+            isNewOp=true
         }
-        txtResult.text = finalResult.toString()
-        isNewOp=true
     }
 
     fun btnPercentClick(view: View){
@@ -134,6 +140,7 @@ class MainActivity : AppCompatActivity() {
 
     fun btnAcClick(view: View){
         txtResult.text = "0"
+        oldNum=""
         isNewOp=true
     }
 }
